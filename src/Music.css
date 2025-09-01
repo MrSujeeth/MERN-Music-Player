@@ -1,0 +1,210 @@
+/* Spotify-like Music Player CSS */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff5454, #282828, #b9a11d);
+    margin: 0;
+    overflow: hidden;
+}
+
+/* General Player Styling */
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Sine Wave Container */
+.wave-container {
+    position: relative;
+    width: 400px;
+    height: 40px;
+    overflow: hidden;
+}
+
+/* SVG for Sine Wave */
+.wave-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Sine Wave Path */
+.wave-path {
+    fill: none;
+    stroke: url(#waveGradient);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: moveWave 2s linear infinite;
+}
+
+/* Gradient for Rainbow Effect */
+.wave-container svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.wave-container svg defs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes moveWave {
+    0% { stroke-dashoffset: 60; }
+    100% { stroke-dashoffset: 0; }
+}
+
+/* Glowing Moving Pointer */
+.progress-pointer {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+    transform: translate(-50%, -50%);
+    animation: movePointer 4s linear infinite;
+}
+
+@keyframes movePointer {
+    0% { left: 0%; }
+    100% { left: 100%; }
+}
+
+/* Default Glassmorphism */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 15px;
+    width: 350px;
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background 0.5s ease-in-out;
+}
+
+/* Apply RGB effect when music is playing */
+.music-playing .container {
+    animation: rgbAnimation 4s infinite alternate ease-in-out;
+}
+
+@keyframes rgbAnimation {
+    0% { background: rgba(255, 0, 0, 0.2); }
+    25% { background: rgba(0, 255, 0, 0.2); }
+    50% { background: rgba(0, 0, 255, 0.2); }
+    75% { background: rgba(255, 255, 0, 0.2); }
+    100% { background: rgba(255, 0, 255, 0.2); }
+}
+
+.container img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease-in-out;
+}
+
+.head {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Custom Styled Progress Bar */
+.inputname input {
+    width: 100%;
+    appearance: none;
+    background: #4e4e4e;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+/* Custom Styled Slider Thumb */
+.inputname input::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #1DB954;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn button:hover {
+    color: #1DB954;
+}
+
+/* Play/Pause Button Styling */
+.btn button:nth-child(2) {
+    font-size: 3rem;
+}
+/* Audio Visualization - Music Waves */
+.audio-visualization {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: flex-end; /* Align bars at the bottom */
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 0 5px;
+}
+
+.wave-bar {
+    flex: 1;
+    background: #1DB954; /* Spotify green */
+    border-radius: 2px;
+    margin: 0 1px;
+    min-height: 5px; /* Minimum height */
+    box-shadow: 0 0 5px rgba(29, 185, 84, 0.5);
+}
+
+/* When paused, set minimal movement */
+.audio-visualization.paused .wave-bar {
+    height: 5px !important; /* Override inline styles when paused */
+    transition: height 0.5s ease-out !important;
+}
+
+/* Pulsing effect for album image when playing */
+.pulsing-image {
+    animation: pulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
