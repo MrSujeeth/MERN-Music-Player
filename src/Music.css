@@ -25,13 +25,11 @@ body {
     height: 40px;
     overflow: hidden;
 }
-
 /* SVG for Sine Wave */
 .wave-svg {
     width: 100%;
     height: 100%;
 }
-
 /* Sine Wave Path */
 .wave-path {
     fill: none;
@@ -42,7 +40,6 @@ body {
     stroke-dashoffset: 60;
     animation: moveWave 2s linear infinite;
 }
-
 /* Gradient for Rainbow Effect */
 .wave-container svg {
     position: absolute;
