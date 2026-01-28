@@ -9,7 +9,6 @@ body {
     margin: 0;
     overflow: hidden;
 }
-
 /* General Player Styling */
 .player {
     display: flex;
@@ -19,7 +18,6 @@ body {
     width: 100%;
     height: 100vh;
 }
-
 /* Sine Wave Container */
 .wave-container {
     position: relative;
